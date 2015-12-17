@@ -1,5 +1,13 @@
 -module(count_chars).
--export([file/1]).
+-import(klib).
+-export([file/1, file1/1]).
+
+file1(File) ->
+    F = fun(Bin, Int) -> 
+               {more, count_x(Bin) + Int}
+        end,
+    klib:with_file(File, F, 0).
+
 
 % 
 % try to open file, if ok - do scan_file function, otherwise - report back error
